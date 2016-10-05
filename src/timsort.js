@@ -4,7 +4,7 @@
 const DEFAULT_MIN_MERGE = 32;
 
 /**
- * Minimum ordered subsequece required to do galloping.
+ * Minimum ordered sub-sequence required to do galloping.
  */
 const DEFAULT_MIN_GALLOPING = 7;
 
@@ -18,7 +18,7 @@ const DEFAULT_TMP_STORAGE_LENGTH = 256;
  * Pre-computed powers of 10 for efficient lexicographic comparison of
  * small integers.
  */
-const POWERS_OF_TEN = [1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9]
+const POWERS_OF_TEN = [1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9];
 
 /**
  * Estimate the logarithm base 10 of a small integer.
@@ -134,7 +134,7 @@ function minRunLength(n) {
  * descending sequence (run) starting at array[lo] in the range [lo, hi). If
  * the run is descending it is made ascending.
  *
- * @param {array} array - The array to reverse.
+ * @param {Array} array - The array to reverse.
  * @param {number} lo - First element in the range (inclusive).
  * @param {number} hi - Last element in the range.
  * @param {function} compare - Item comparison function.
@@ -167,7 +167,7 @@ function makeAscendingRun(array, lo, hi, compare) {
 /**
  * Reverse an array in the range [lo, hi).
  *
- * @param {array} array - The array to reverse.
+ * @param {Array} array - The array to reverse.
  * @param {number} lo - First element in the range (inclusive).
  * @param {number} hi - Last element in the range.
  */
@@ -185,7 +185,7 @@ function reverseRun(array, lo, hi) {
  * Perform the binary sort of the array in the range [lo, hi) where start is
  * the first element possibly out of order.
  *
- * @param {array} array - The array to sort.
+ * @param {Array} array - The array to sort.
  * @param {number} lo - First element in the range (inclusive).
  * @param {number} hi - Last element in the range.
  * @param {number} start - First element possibly out of order.
@@ -251,7 +251,7 @@ function binaryInsertionSort(array, lo, hi, start, compare) {
  * (for stability).
  *
  * @param {number} value - Value to insert.
- * @param {array} array - The array in which to insert value.
+ * @param {Array} array - The array in which to insert value.
  * @param {number} start - First element in the range.
  * @param {number} length - Length of the range.
  * @param {number} hint - The index at which to begin the search.
@@ -330,7 +330,7 @@ function gallopLeft(value, array, start, length, hint, compare) {
  * (for stability).
  *
  * @param {number} value - Value to insert.
- * @param {array} array - The array in which to insert value.
+ * @param {Array} array - The array in which to insert value.
  * @param {number} start - First element in the range.
  * @param {number} length - Length of the range.
  * @param {number} hint - The index at which to begin the search.
@@ -567,7 +567,7 @@ class TimSort {
     let compare = this.compare;
     let array = this.array;
     let tmp = this.tmp;
-    let i = 0;
+    let i;
 
     for (i = 0; i < length1; i++) {
       tmp[i] = array[start1 + i];
@@ -728,7 +728,7 @@ class TimSort {
     let compare = this.compare;
     let array = this.array;
     let tmp = this.tmp;
-    let i = 0;
+    let i;
 
     for (i = 0; i < length2; i++) {
       tmp[i] = array[start2 + i];
@@ -737,8 +737,8 @@ class TimSort {
     let cursor1 = start1 + length1 - 1;
     let cursor2 = length2 - 1;
     let dest = start2 + length2 - 1;
-    let customCursor = 0;
-    let customDest = 0;
+    let customCursor;
+    let customDest;
 
     array[dest--] = array[cursor1--];
 
@@ -900,7 +900,7 @@ class TimSort {
 /**
  * Sort an array in the range [lo, hi) using TimSort.
  *
- * @param {array} array - The array to sort.
+ * @param {Array} array - The array to sort.
  * @param {function=} compare - Item comparison function. Default is
  *     alphabetical
  * @param {number} lo - First element in the range (inclusive).
@@ -921,7 +921,8 @@ export function sort(array, compare, lo, hi) {
 
   } else if (typeof compare !== 'function') {
     hi = lo;
-    lo = compare;
+    //noinspection JSValidateTypes
+	lo = compare;
     compare = alphabeticalCompare;
   }
 
