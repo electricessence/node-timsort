@@ -1,6 +1,6 @@
 {
   "name": "timsort",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "Marco Ziccardi",
     "url": "http://mziccard.me/"
@@ -8,6 +8,7 @@
   "description": "TimSort: Fast Sorting for Node.js",
   "homepage": "https://github.com/mziccard/node-timsort",
   "main": "index.js",
+  "typings":"index.d.ts",
   "directories": {
     "test": "./test",
     "benchmark": "./benchmark"
